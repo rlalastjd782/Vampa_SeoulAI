@@ -16,7 +16,19 @@ public class JDBCTest {
 
 	@Test
 	public void testConnection() {
-		try (Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:oracle", "system", "1234")) {
+		//given , when , then
+		//given
+		String url = "jdbc:oracle:thin:@localhost:1521:myoracle";
+		String id = "minseong";
+		String password = "0700";
+		
+		//when 실행
+		try (Connection con = DriverManager.getConnection(
+				url,
+				id, 
+				password)) {
+			
+			//then
 			System.out.println(con);
 		} catch (Exception e) {
 			fail(e.getMessage());
