@@ -56,7 +56,7 @@ textarea {
 </style>
 </head>
 <body>
-	<h1>조회 페이지</h1>
+	<h1>수정 페이지</h1>
 	<form id="modifyForm" action="/board/modify" method="post">
    
 	
