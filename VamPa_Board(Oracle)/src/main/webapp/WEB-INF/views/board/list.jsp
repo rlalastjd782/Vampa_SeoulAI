@@ -83,7 +83,11 @@ thead {
 			<c:forEach items="${list}" var="list">
 				<tr>
 					<td><c:out value="${list.bno}" /></td>
-					<td><c:out value="${list.title}" /></td>
+					<td>
+						<a class="move" href='<c:out value="${list.bno}"/>'> 
+						<c:out value="${list.title}" />
+						</a>
+					</td>
 					<td><c:out value="${list.writer}" /></td>
 					<td><fmt:formatDate pattern="yyyy/MM/dd"
 							value="${list.regdate}" /></td>
@@ -92,6 +96,7 @@ thead {
 				</tr>
 			</c:forEach>
 		</table>
+		<form id="moveForm" method="get"></form>
 	</div>
 
 	<script>
@@ -114,7 +119,18 @@ thead {
 			}
 
 		});
-	</script>
+		let moveForm = $("#moveForm");
 
+		$(".move").on(
+				"click",
+				function(e) {
+					e.preventDefault();//이벤트 버블링 막기 자식의 이벤트를 부모에서도 인식해서 실행. 이벤트를 부에서 실행하지 않도록
+
+					moveForm.append("<input type='hidden' name='bno' value='"
+							+ $(this).attr("href") + "'>");
+					moveForm.attr("action", "/board/get");
+					moveForm.submit();
+				});
+	</script>
 </body>
 </html>

@@ -10,9 +10,17 @@
 		#{content},
 		#{writer})
 	</insert>
-	<!-- 게시판 목록 -->
+	<!-- 게시글 목록 -->
 	<select id="getList" resultType="com.vam.model.BoardVO">
 		select * from vam_board
+	</select>
+
+	<!-- 게시글 상세조회 -->
+	<select id="getPage" resultType="com.vam.model.BoardVO">
+
+		select * from vam_board where
+		bno = #{bno}
+
 	</select>
 
 </mapper>

@@ -42,6 +42,18 @@ public class BoardServiceTests {
         
     }
     
+    /*게시글 상세 조회*/
+    @Test
+    public void testGETPage() {
+        
+        int bno = 3;
+        
+        log.info("" + service.getPage(bno));
+        
+    }
+ 
+
+    
     
  
 }
