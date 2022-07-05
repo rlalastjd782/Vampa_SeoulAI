@@ -126,10 +126,19 @@ thead {
 				function(e) {
 					e.preventDefault();//이벤트 버블링 막기 자식의 이벤트를 부모에서도 인식해서 실행. 이벤트를 부에서 실행하지 않도록
 
+					// name이 bno 인 요소
+					//제이쿼리는 리무브이다.
+					//비어있는 moveForm 에 동적으로 hidden input으로 bno를 추가
+					//이것만이있으면 뒤로가기를햇을때bno 가 누적이되는 현상이 발생한다.
+					let nameEle = $("input[name=bno]");
+					nameEle.remove();
+					moveForm.remove("name");
 					moveForm.append("<input type='hidden' name='bno' value='"
 							+ $(this).attr("href") + "'>");
 					moveForm.attr("action", "/board/get");
+					
 					moveForm.submit();
+					
 				});
 	</script>
 </body>
