@@ -58,4 +58,22 @@ public class BoardMapperTests {
 
 	}
 
+	@Test
+	public void testModify() {
+		// 프로세스가 3단계
+		// 준비 실행 리턴 결과활용 given when then
+		// 1. 이미 있는 데이터 준비하고= 데이터베이스에 기존에 존재하는 bno를 where 로 걸어야한다
+		BoardVO board = new BoardVO();
+		board.setBno(6);
+		// 2. 그 데이터를 다른 데이터로 변경
+		board.setTitle("junit에서 바꾼 제목");
+		board.setContent("junit에서 바꾼 내용");
+
+		// 3. 변경된결과 활용
+		int result = mapper.modify(board);
+
+		log.info("junit  수정결과 : " + result);
+
+	}
+
 }

@@ -23,4 +23,11 @@
 
 	</select>
 
+	<!-- 게시글 수정 -->
+	<update id="modify">
+		<!-- Oracle -->
+		update vam_board set title = #{title}, content = #{content},updatedate
+		= sysdate where bno = #{bno}
+	</update>
+
 </mapper>

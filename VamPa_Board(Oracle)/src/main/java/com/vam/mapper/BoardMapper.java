@@ -14,4 +14,7 @@ public interface BoardMapper {
 	/* 게시글 상세조회 */
 	public BoardVO getPage(int bno);
 
+	/* 게시글 수정 */
+	public int modify(BoardVO board);
+
 }
