@@ -5,9 +5,14 @@
 <mapper namespace="com.vam.mapper.BoardMapper">
 	<!-- 게시판 등록 -->
 	<insert id="enroll">
-<!-- 인자로 전달받은 dto의 getter 함수를 자동으로 호출해서 매칭 -->
-		insert into vam_board(title, content, writer) values (#{title}, #{content},
+		<!-- 인자로 전달받은 dto의 getter 함수를 자동으로 호출해서 매칭 -->
+		insert into vam_board(title, content, writer) values (#{title},
+		#{content},
 		#{writer})
 	</insert>
+	<!-- 게시판 목록 -->
+	<select id="getList" resultType="com.vam.model.BoardVO">
+		select * from vam_board
+	</select>
 
 </mapper>
