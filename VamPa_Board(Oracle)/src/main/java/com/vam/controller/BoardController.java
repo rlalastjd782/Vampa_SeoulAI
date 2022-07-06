@@ -68,9 +68,11 @@ public class BoardController {
 	 * URL REWRITE처리 라고한다. URL 뒤에 정보들이 계속 누적이된다.
 	 */
 	@GetMapping("/get")
-	public void boardGetPageGET(int bno, Model model) {
+	public void boardGetPageGET(int bno, Model model, Criteria cri) {
 
 		model.addAttribute("pageInfo", bservice.getPage(bno));
+		
+		model.addAttribute("cri",cri);
 
 	}
 
