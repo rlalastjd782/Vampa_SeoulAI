@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.vam.model.BoardVO;
+import com.vam.model.Criteria;
 import com.vam.service.BoardService;
 
 @Controller
@@ -24,11 +25,11 @@ public class BoardController {
 
 	@GetMapping("/list")
 	// => @RequestMapping(value="list", method=RequestMethod.GET)
-	public void boardListGET(Model model) {
+	public void boardListGET(Model model, Criteria cri) {
 
-		log.info("게시판 목록 페이지 진입");
-
-		model.addAttribute("list", bservice.getList());
+		 log.info("boardListGET");
+	        
+	     model.addAttribute("list", bservice.getListPaging(cri));
 
 	}
 
