@@ -97,11 +97,14 @@ thead {
 		</table>
 		<div class="pageInfo_wrap">
 			<div class="pageInfo_area">
-			 <!-- 각 번호 페이지 버튼 -->
-                <c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
-                    <li class="pageInfo_btn"><a href="${num}">${num}</a></li>
-                </c:forEach>
-			
+				<!-- 각 번호 페이지 버튼 -->
+				<ul id="pageInfo" class="pageInfo">
+					<c:forEach var="num" begin="${pageMaker.startPage}"
+						end="${pageMaker.endPage}">
+						<li class="pageInfo_btn"><a href="${num}">${num}</a></li>
+
+					</c:forEach>
+				</ul>
 			</div>
 		</div>
 		<form id="moveForm" method="get">
@@ -158,6 +161,17 @@ thead {
 					moveForm.submit();
 					
 				});
+		
+		 //페이지이동
+		 $(".pageInfo a").on("click", function(e){
+			 
+			 	e.preventDefault();
+			 	 //name이 pageNum인 input태그의 값에다가 그놈의 href값으로 대입
+		        moveForm.find("input[name='pageNum']").val($(this).attr("href"));
+		        moveForm.attr("action", "/board/list");//action 속성추가
+		        moveForm.submit();
+		        
+		    });
 	</script>
 </body>
 </html>
