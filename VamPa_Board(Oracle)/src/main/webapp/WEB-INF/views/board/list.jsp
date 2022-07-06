@@ -83,20 +83,31 @@ thead {
 			<c:forEach items="${list}" var="list">
 				<tr>
 					<td><c:out value="${list.bno}" /></td>
-					<td>
-						<a class="move" href='<c:out value="${list.bno}"/>'> 
-						<c:out value="${list.title}" />
-						</a>
-					</td>
+					<td><a class="move" href='<c:out value="${list.bno}"/>'> <c:out
+								value="${list.title}" />
+					</a></td>
 					<td><c:out value="${list.writer}" /></td>
 					<td><fmt:formatDate pattern="yyyy/MM/dd"
 							value="${list.regdate}" /></td>
 					<td><fmt:formatDate pattern="yyyy/MM/dd"
 							value="${list.updateDate}" /></td>
 				</tr>
+
 			</c:forEach>
 		</table>
-		<form id="moveForm" method="get"></form>
+		<div class="pageInfo_wrap">
+			<div class="pageInfo_area">
+			 <!-- 각 번호 페이지 버튼 -->
+                <c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
+                    <li class="pageInfo_btn"><a href="${num}">${num}</a></li>
+                </c:forEach>
+			
+			</div>
+		</div>
+		<form id="moveForm" method="get">
+			<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum }">
+			<input type="hidden" name="amount" value="${pageMaker.cri.amount }">
+		</form>
 	</div>
 
 	<script>

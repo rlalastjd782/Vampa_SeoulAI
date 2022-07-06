@@ -9,10 +9,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
 
 import com.vam.model.BoardVO;
 import com.vam.model.Criteria;
 
+@WebAppConfiguration
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
 public class BoardMapperTests {
@@ -94,4 +96,12 @@ public class BoardMapperTests {
         list.forEach(board -> log.info("" + board));
     }
 
+    /* 게시판 전체 글의수 가져오기테스트 */
+    @Test
+    public void testGetTotal() {
+        int total = mapper.getTotal();
+        log.info("등록된 총 글의수 :" + total);
+    }
+    
+    
 }
