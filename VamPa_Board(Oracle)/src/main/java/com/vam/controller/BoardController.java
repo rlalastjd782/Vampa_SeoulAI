@@ -78,10 +78,11 @@ public class BoardController {
 
 	/* 수정 페이지 이동 */
 	@GetMapping("/modify")
-	public void boardModifyGET(int bno, Model model) {
+	public void boardModifyGET(int bno, Model model, Criteria cri) {
 
 		model.addAttribute("pageInfo", bservice.getPage(bno));
-
+		
+		model.addAttribute("cri",cri);
 	}
 
 	/* 페이지 수정 */
