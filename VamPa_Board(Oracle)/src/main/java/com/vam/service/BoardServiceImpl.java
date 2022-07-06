@@ -48,4 +48,13 @@ public class BoardServiceImpl implements BoardService {
         
         return mapper.modify(board);
     }
+	
+
+	   /* 게시글 삭제 */
+	@Override
+	public int delete(int bno) {
+	        
+	     return mapper.delete(bno);
+	    }    
+	 
 }

@@ -51,6 +51,15 @@ public class BoardServiceTests {
         log.info("" + service.getPage(bno));
         
     }
+    
+    /* 게시판 삭제 */
+    @Test
+    public void testDelete() {
+        
+        int result = service.delete(22);
+        log.info("result : " + result);
+        
+    }
  
 
     
