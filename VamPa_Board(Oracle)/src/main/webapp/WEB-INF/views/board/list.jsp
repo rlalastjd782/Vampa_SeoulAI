@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
@@ -9,148 +9,185 @@
 <title>Insert title here</title>
 
 <script src="https://code.jquery.com/jquery-3.4.1.js"
-   integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-   crossorigin="anonymous"></script>
+	integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+	crossorigin="anonymous"></script>
 
 <style>
 a {
-   text-decoration: none;
+	text-decoration: none;
 }
 
 table {
-   border-collapse: collapse;
-   width: 1000px;
-   margin-top: 20px;
-   text-align: center;
+	border-collapse: collapse;
+	width: 1000px;
+	margin-top: 20px;
+	text-align: center;
 }
 
 td, th {
-   border: 1px solid black;
-   height: 50px;
+	border: 1px solid black;
+	height: 50px;
 }
 
 th {
-   font-size: 17px;
+	font-size: 17px;
 }
 
 thead {
-   font-weight: 700;
+	font-weight: 700;
 }
 
 .table_wrap {
-   margin: 50px 0 0 50px;
+	margin: 50px 0 0 50px;
 }
 
 .bno_width {
-   width: 12%;
+	width: 12%;
 }
 
 .writer_width {
-   width: 20%;
+	width: 20%;
 }
 
 .regdate_width {
-   width: 15%;
+	width: 15%;
 }
 
 .updatedate_width {
-   width: 15%;
+	width: 15%;
 }
 
 .top_btn {
-   font-size: 20px;
-   padding: 6px 12px;
-   background-color: #fff;
-   border: 1px solid #ddd;
-   font-weight: 600;
+	font-size: 20px;
+	padding: 6px 12px;
+	background-color: #fff;
+	border: 1px solid #ddd;
+	font-weight: 600;
 }
 
-.pageInfo{
-   list-style : none;
-   display: inline-block;
-   margin: 50px 0 0 100px;      
+.pageInfo {
+	list-style: none;
+	display: inline-block;
+	margin: 50px 0 0 100px;
 }
- 
-.pageInfo li{
-   float: left;
-   font-size: 20px;
-   margin-left: 18px;
-   padding: 7px;
-   font-weight: 500;
+
+.pageInfo li {
+	float: left;
+	font-size: 20px;
+	margin-left: 18px;
+	padding: 7px;
+	font-weight: 500;
 }
- a:link {color:black; text-decoration: none;}
- a:visited {color:black; text-decoration: none;}
- a:hover {color:black; text-decoration: underline;}
- 
-.active{
-    background-color: #cdd5ec;
+
+a:link {
+	color: black;
+	text-decoration: none;
+}
+
+a:visited {
+	color: black;
+	text-decoration: none;
+}
+
+a:hover {
+	color: black;
+	text-decoration: underline;
+}
+
+.active {
+	background-color: #cdd5ec;
+}
+
+.search_area {
+	display: inline-block;
+	margin-top: 30px;
+	margin-left: 260px;
+}
+
+.search_area input {
+	height: 30px;
+	width: 250px;
+}
+
+.search_area button {
+	width: 100px;
+	height: 36px;
 }
 </style>
 
 </head>
 <body>
-   <h1>목록페이지입니다.</h1>
-   <div class="table_wrap">
-      <a href="/board/enroll" class="top_btn">게시판 등록</a>
-      <table>
-         <thead>
-            <tr>
-               <th class="bno_width">번호</th>
-               <th class="title_width">제목</th>
-               <th class="writer_width">작성자</th>
-               <th class="regdate_width">작성일</th>
-               <th class="updatedate_width">수정일</th>
-            </tr>
-         </thead>
-         <c:forEach items="${list}" var="list">
-            <tr>
-               <td><c:out value="${list.bno}" /></td>
-               <td>
-                  <a class="move" href='<c:out value="${list.bno}"/>'>
-                   <c:out value="${list.title}" />
-                  </a>
-               </td>
-               <td><c:out value="${list.writer}" /></td>
-               <%-- <td><c:out value="${list.regdate}" /></td> --%>
-               <%-- <td><c:out value="${list.updateDate}" /></td> --%>
-               <td><fmt:formatDate pattern="yyyy/MM/dd"
-                     value="${list.regdate}" /></td>
-               <td><fmt:formatDate pattern="yyyy/MM/dd"
-                     value="${list.updateDate}" /></td>
-            </tr>
-         </c:forEach>
-      </table>
-      
-      <!-- 페이징영역 -->
-      <div class="pageInfo_wrap" >
-      	  <div class="pageInfo_area">
-      	  	<ul id="pageInfo" class="pageInfo">
-                <!-- 이전페이지 버튼 -->
-                <c:if test="${pageMaker.prev}">
-                    <li class="pageInfo_btn previous"><a href="${pageMaker.startPage-1}">Previous</a></li>
-                </c:if>
-                
-                <!-- 각 번호 페이지 버튼 -->
-                <c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
-                    <li class="pageInfo_btn ${pageMaker.cri.pageNum == num ? "active":"" }"><a href="${num}">${num}</a></li>
-                    <!-- 컨트롤러에서 전달된 페이지 번호가   현재 반복문을 돌다가 나온 페이지 번호이면 active라는 클래스 동적추가 -->
-                </c:forEach>
-                
-                <!-- 다음페이지 버튼 -->
-                <c:if test="${pageMaker.next}">
-                    <li class="pageInfo_btn next"><a href="${pageMaker.endPage + 1 }">Next</a></li>
-                </c:if> 
-            </ul>
-      	  </div>
-  	  </div>
-      
-      <form id="moveForm" method="get">
-      	  <input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum }">
-          <input type="hidden" name="amount"  value="${pageMaker.cri.amount }">
-      </form>
-   </div>
+	<h1>목록페이지입니다.</h1>
+	<div class="table_wrap">
+		<a href="/board/enroll" class="top_btn">게시판 등록</a>
+		<table>
+			<thead>
+				<tr>
+					<th class="bno_width">번호</th>
+					<th class="title_width">제목</th>
+					<th class="writer_width">작성자</th>
+					<th class="regdate_width">작성일</th>
+					<th class="updatedate_width">수정일</th>
+				</tr>
+			</thead>
+			<c:forEach items="${list}" var="list">
+				<tr>
+					<td><c:out value="${list.bno}" /></td>
+					<td><a class="move" href='<c:out value="${list.bno}"/>'> <c:out
+								value="${list.title}" />
+					</a></td>
+					<td><c:out value="${list.writer}" /></td>
+					<%-- <td><c:out value="${list.regdate}" /></td> --%>
+					<%-- <td><c:out value="${list.updateDate}" /></td> --%>
+					<td><fmt:formatDate pattern="yyyy/MM/dd"
+							value="${list.regdate}" /></td>
+					<td><fmt:formatDate pattern="yyyy/MM/dd"
+							value="${list.updateDate}" /></td>
+				</tr>
+			</c:forEach>
+		</table>
+		<div class="search_wrap">
+			<div class="search_area">
+				<input type="text" name="keyword" value="${pageMaker.cri.keyword }">
+				<button>Search</button>
+			</div>
+		</div>
 
-   <script>
+		<!-- 페이징영역 -->
+		<div class="pageInfo_wrap">
+			<div class="pageInfo_area">
+				<ul id="pageInfo" class="pageInfo">
+					<!-- 이전페이지 버튼 -->
+					<c:if test="${pageMaker.prev}">
+						<li class="pageInfo_btn previous"><a
+							href="${pageMaker.startPage-1}">Previous</a></li>
+					</c:if>
+
+					<!-- 각 번호 페이지 버튼 -->
+					<c:forEach var="num" begin="${pageMaker.startPage}"
+						end="${pageMaker.endPage}">
+						<li class="pageInfo_btn ${pageMaker.cri.pageNum == num ? "active":"" }"><a
+							href="${num}">${num}</a></li>
+						<!-- 컨트롤러에서 전달된 페이지 번호가   현재 반복문을 돌다가 나온 페이지 번호이면 active라는 클래스 동적추가 -->
+					</c:forEach>
+
+					<!-- 다음페이지 버튼 -->
+					<c:if test="${pageMaker.next}">
+						<li class="pageInfo_btn next"><a
+							href="${pageMaker.endPage + 1 }">Next</a></li>
+					</c:if>
+				</ul>
+			</div>
+		</div>
+
+		<form id="moveForm" method="get">
+			<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum }">
+			<input type="hidden" name="amount" value="${pageMaker.cri.amount }">
+			<input type="hidden" name="keyword" value="${pageMaker.cri.keyword }">
+		</form>
+	</div>
+
+	<script>
     $(document).ready(function(){
        let result = '<c:out value="${result}"/>';
        
@@ -200,6 +237,16 @@ thead {
         moveForm.attr("action", "/board/list");	//action속성 추가
         moveForm.submit();
         
+    });
+    //검색 버튼을 눌렀을때 동작하게된다.
+    //메서드가 동작하게되면 버튼의 기능을 막고 사용자가 작성한 키워ㅏ드 데이터를 태그 내부에있는 name 속성이
+    //키워드인 input 태그에 저장을시킨다
+	$(".search_area button").on("click", function(e){
+        e.preventDefault();
+        let val = $("input[name='keyword']").val();
+        moveForm.find("input[name='keyword']").val(val);
+        moveForm.find("input[name='pageNum']").val(1);
+        moveForm.submit();
     });
  
 </script>

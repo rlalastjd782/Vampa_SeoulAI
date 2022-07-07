@@ -11,6 +11,10 @@ public class Criteria {
     /* 한 페이지 당 보여질 게시물 갯수 */
     private int amount;
     
+    /*검색키워드*/
+    private String keyword;
+   
+    
     /* 기본 생성자 -> 기봅 세팅 : pageNum = 1, amount = 10 */
     public Criteria() {
         this(1,10);// 이클래스로 만들어진 인스턴스

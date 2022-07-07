@@ -24,6 +24,6 @@ public interface BoardMapper {
 	/* 게시글 삭제 */
 	public int delete(int bno);
 	/* 게시글 총 갯수 */
-    public int getTotal();
+    public int getTotal(Criteria cri);
 
 }
