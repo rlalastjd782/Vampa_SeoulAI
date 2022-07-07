@@ -1,6 +1,9 @@
 package com.vam.model;
 
+import lombok.AccessLevel;
 import lombok.Data;
+import lombok.Setter;
+
 
 @Data
 public class Criteria {
@@ -13,6 +16,21 @@ public class Criteria {
     
     /*검색키워드*/
     private String keyword;
+    
+    /* 검색 타입 배열 */
+    
+    private String[] typeArr;
+    
+    /* 검색 타입 */
+    @Setter(AccessLevel.PROTECTED)
+    private String type;
+    
+    public void setType(String type) {
+    	this.type = type;
+    	this.typeArr = type.split("");
+    }
+   
+    
    
     
     /* 기본 생성자 -> 기봅 세팅 : pageNum = 1, amount = 10 */
